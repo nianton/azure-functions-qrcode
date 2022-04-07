@@ -49,6 +49,7 @@ namespace QrCodeGenerator.Func
                 using (MemoryStream ms = new MemoryStream())
                 {
                     qrCodeImage.Save(ms, ImageFormat.Png);
+                    req.HttpContext.Response.Headers.Append("Cache-Control", "public, max-age=86400");
                     return new FileContentResult(ms.ToArray(), "image/png");
                 }
             }
