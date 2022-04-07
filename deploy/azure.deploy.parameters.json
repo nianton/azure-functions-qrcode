@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "applicationName": {
+      "value": "qrcodegen"
+    },
+    "environment": {
+      "value": "dev"
+    },
+    "location": {
+      "value": "westeurope"
+    },
+    "functionAppRepoUrl": {
+      "value": "https://github.com/nianton/azure-functions-qrcode.git"
+    },
+    "tags": {
+      "value": {
+        "owner": "myself",
+        "costCenter": "personal wallet"
+      }
+    }
+  }
+}
