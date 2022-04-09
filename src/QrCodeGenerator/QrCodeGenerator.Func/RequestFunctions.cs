@@ -28,18 +28,18 @@ namespace QrCodeGenerator.Func
 
         [FunctionName("GetQrCode")]
         public IActionResult GetQrCode(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "qrcode/{id}")] HttpRequest req,
-            string id,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "qrcode/{payload}")] HttpRequest req,
+            string payload,
             ILogger log)
         {
             log.LogInformation("New retrieve request arrived");
 
-            //if (!Guid.TryParse(id, out _))
-            //{
-            //    return new BadRequestObjectResult(new { Error = "Invalid or empty id." });
-            //}
+            if (!ValidateInput(payload))
+            {
+               return new BadRequestObjectResult(new { Error = "Invalid or empty id." });
+            }
 
-            var validateUrl = $"{id}";
+            var validateUrl = $"{payload}";
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
             QRCodeData qrCodeData = qrGenerator.CreateQrCode(validateUrl, QRCodeGenerator.ECCLevel.H);
             QRCode qrCode = new QRCode(qrCodeData);
@@ -56,5 +56,10 @@ namespace QrCodeGenerator.Func
         }
 
         #endregion
+
+        private bool ValidateInput(string qrPayload) 
+        {
+            return string.IsNullOrWhiteSpace(qrPayload);
+        }
     }
 }

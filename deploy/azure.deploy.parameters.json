@@ -12,7 +12,7 @@
       "value": "westeurope"
     },
     "functionAppRepoUrl": {
-      "value": "https://github.com/nianton/azure-functions-qrcode.git"
+      "value": "https://github.com/nianton/azure-functions-qrcode"
     },
     "tags": {
       "value": {

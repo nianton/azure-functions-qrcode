@@ -15,7 +15,7 @@ param managedIdentity bool = false
 param skuName string = 'Y1'
 
 param funcDeployRepoUrl string = ''
-param funcDeployBranch string = ''
+param funcDeployBranch string = 'main'
 param subnetIdForIntegration string = ''
 param includeSampleFunction bool = false
 
@@ -175,10 +175,10 @@ output id string = funcApp.id
 output name string = funcApp.name
 output defaultHostName string = funcApp.properties.defaultHostName
 output appServicePlanId string = funcAppServicePlan.id
-output identity object = {
+output identity object = managedIdentity ? {
   tenantId: funcApp.identity.tenantId
   principalId: funcApp.identity.principalId
   type: funcApp.identity.type
-}
+} : {}
 output applicationInsights object = funcAppIns
 output storage object = funcStorage
