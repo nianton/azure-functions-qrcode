@@ -59,7 +59,7 @@ namespace QrCodeGenerator.Func
 
         private bool ValidateInput(string qrPayload) 
         {
-            return string.IsNullOrWhiteSpace(qrPayload);
+            return !string.IsNullOrWhiteSpace(qrPayload);
         }
     }
 }
