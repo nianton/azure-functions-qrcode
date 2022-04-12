@@ -1,5 +1,6 @@
 param name string
 param location string = resourceGroup().location
+@description('Endpoint configuration, expecting an object with properties "name", "originName" and "originHostHeader"')
 param endpointConfig object
 
 resource cdnProfile 'Microsoft.Cdn/profiles@2020-09-01' = {
@@ -35,7 +36,7 @@ resource endpoint 'Microsoft.Cdn/profiles/endpoints@2020-09-01' = {
     isCompressionEnabled: true
     origins: [
       {
-        name: 'origin1'
+        name: contains(endpointConfig, 'originName') && !empty(endpointConfig.originName) ? endpointConfig.originName : 'origin1'
         properties: {
           hostName: endpointConfig.originHostHeader
         }

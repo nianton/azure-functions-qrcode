@@ -11,6 +11,9 @@
     "location": {
       "value": "westeurope"
     },
+    "functionAppServicePlanSku": {
+      "value": "Y1"
+    },
     "functionAppRepoUrl": {
       "value": "https://github.com/nianton/azure-functions-qrcode"
     },

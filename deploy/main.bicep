@@ -1,5 +1,12 @@
 param naming object
 param location string = resourceGroup().location
+@allowed([
+  'Y1'
+  'EP1'
+  'EP2'
+  'EP3'
+])
+param functionAppServicePlanSku string
 param functionAppRepoUrl string
 param tags object
 
@@ -27,6 +34,7 @@ module functionApp 'modules/functionApp.module.bicep' = {
   params: {
     name: resourceNames.functionApp
     location: location
+    skuName: functionAppServicePlanSku
     funcDeployRepoUrl: functionAppRepoUrl
     tags: tags
   }

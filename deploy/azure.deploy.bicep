@@ -3,6 +3,14 @@ targetScope = 'subscription'
 param location string
 param applicationName string
 param environment string
+
+@allowed([
+  'Y1'
+  'EP1'
+  'EP2'
+  'EP3'
+])
+param functionAppServicePlanSku string
 param functionAppRepoUrl string
 param tags object = {}
 
@@ -40,6 +48,7 @@ module main 'main.bicep' = {
   params: {
     location: location
     naming: naming.outputs.names
+    functionAppServicePlanSku: functionAppServicePlanSku
     functionAppRepoUrl: functionAppRepoUrl    
     tags: defaultTags
   }
