@@ -7,13 +7,19 @@ This is a templated deployment of a secure Azure architecture for hosting an Azu
 
 The architecture of the solution is as depicted on the following diagram:
 
-![Artitectural Diagram](./assets/azure-deployment-diagram.png?raw=true)
+![Artitectural Diagram](./assets/architecture-diagram.png?raw=true)
 
 ## The role of each component
-* **Frontend Web App** -public facing website
+
 * **Azure Function** serverless component to generate the QR Code via a GET request (returns QR Code in PNG format)
 * **Application Insights** to provide monitoring and visibility for the health and performance of the Azure Function
 * **CDN Profile & Endpoint** the Content Delivery Network to cache the QR Code image to the closest Point-of-Presence to the client
+
+## Azure Function QR Code generator
+
+A sample implementation for generating a QR code based on a GET request, containing the information of the `payload` path parameter, is also deployed as part of this repository, and the related .NET Core project is under the path `/src/QrCodeGenerator`.
+
+**NOTE**: The Azure Function deployed also contains an access restriction to allow traffic **only** coming through the related CDN backend.
 
 <br>
 
